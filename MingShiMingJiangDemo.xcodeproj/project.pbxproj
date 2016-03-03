@@ -27,6 +27,7 @@
 		EEC0E7EF1C88A5CE0092A58D /* GFSIntroduceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC0E7EE1C88A5CE0092A58D /* GFSIntroduceViewController.m */; };
 		EEC0E7F31C88A6030092A58D /* GFSAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC0E7F21C88A6030092A58D /* GFSAboutUsViewController.m */; };
 		EEC0E7F61C88B1B10092A58D /* GFSMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC0E7F51C88B1B10092A58D /* GFSMineViewController.m */; };
+		EEC0E7F91C88B8A30092A58D /* GFSState.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC0E7F81C88B8A30092A58D /* GFSState.m */; };
 		EEC9526B1C87DF2F0057B5FE /* GFSHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC9526A1C87DF2F0057B5FE /* GFSHttpTool.m */; };
 		EEC9526F1C87E2680057B5FE /* GFSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC9526D1C87E2680057B5FE /* GFSLoginViewController.m */; };
 		EEC952701C87E2680057B5FE /* GFSLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEC9526E1C87E2680057B5FE /* GFSLoginViewController.xib */; };
@@ -147,6 +148,8 @@
 		EEC0E7F21C88A6030092A58D /* GFSAboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFSAboutUsViewController.m; sourceTree = "<group>"; };
 		EEC0E7F41C88B1B10092A58D /* GFSMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFSMineViewController.h; sourceTree = "<group>"; };
 		EEC0E7F51C88B1B10092A58D /* GFSMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFSMineViewController.m; sourceTree = "<group>"; };
+		EEC0E7F71C88B8A30092A58D /* GFSState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFSState.h; sourceTree = "<group>"; };
+		EEC0E7F81C88B8A30092A58D /* GFSState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFSState.m; sourceTree = "<group>"; };
 		EEC952691C87DF2F0057B5FE /* GFSHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFSHttpTool.h; sourceTree = "<group>"; };
 		EEC9526A1C87DF2F0057B5FE /* GFSHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFSHttpTool.m; sourceTree = "<group>"; };
 		EEC9526C1C87E2680057B5FE /* GFSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFSLoginViewController.h; sourceTree = "<group>"; };
@@ -411,6 +414,8 @@
 			children = (
 				EEC952841C88142B0057B5FE /* GFSAccountTool.h */,
 				EEC952851C88142B0057B5FE /* GFSAccountTool.m */,
+				EEC0E7F71C88B8A30092A58D /* GFSState.h */,
+				EEC0E7F81C88B8A30092A58D /* GFSState.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -931,6 +936,7 @@
 				EEC952891C881AD60057B5FE /* GFSMeNavigationController.m in Sources */,
 				EEF34D001C841BFF00E058CC /* AppDelegate.m in Sources */,
 				EEC0E7EF1C88A5CE0092A58D /* GFSIntroduceViewController.m in Sources */,
+				EEC0E7F91C88B8A30092A58D /* GFSState.m in Sources */,
 				EEC0E7D31C8896490092A58D /* GFSArrowSettingItem.m in Sources */,
 				EEC0E7D61C8896D90092A58D /* GFSSwithSettingItem.m in Sources */,
 				EE16CFC31C861E5400636C13 /* GFSCollectionReusableView.m in Sources */,

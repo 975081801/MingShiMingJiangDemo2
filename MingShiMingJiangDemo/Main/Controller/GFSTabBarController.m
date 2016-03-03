@@ -14,6 +14,7 @@
 #import "GFSLoginViewController.h"
 #import "GFSMeNavigationController.h"
 
+#import "GFSMineViewController.h"
 @interface GFSTabBarController ()
 
 @end
@@ -43,7 +44,10 @@
     GFSMessageViewController *message = [[GFSMessageViewController alloc]init];
     [self setupChildViewController:message withTitle:@"消息" imageName:@"" selectedImageName:@""];
     // 3. 我
-    [self setMe];
+//    [self setMe];
+    
+    GFSMineViewController *mine = [[GFSMineViewController alloc]init];
+    [self addChildViewController:mine];
 }
 - (void)setMe
 {

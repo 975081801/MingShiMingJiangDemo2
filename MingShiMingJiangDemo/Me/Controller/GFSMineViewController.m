@@ -7,18 +7,119 @@
 //
 
 #import "GFSMineViewController.h"
-
+#import "GFSMeNavigationController.h"
+#import "GFSMeViewController.h"
+#import "GFSLoginViewController.h"
 @interface GFSMineViewController ()
-
+/**
+ *  记录登录状态
+ */
+@property(nonatomic,assign)BOOL state;
+/**
+ *  记录当前展示的控制器
+ */
+@property(nonatomic,weak)UIViewController *showViewController;
+/**
+ *  wo 模块
+ */
+@property(nonatomic,weak)GFSMeViewController *mineVC;
+/**
+ *  登录模块
+ */
+@property(nonatomic,weak)GFSLoginViewController *logVC;
 @end
 
 @implementation GFSMineViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+   
+    // 添加子控制器
+    [self addChildViewControllers];
+    // 设置显示的控制器
+    [self showWhichViewController];
+    
+    GFSAddObsver(stateChanged, GFSStateChanged);
 }
-
+- (void)addChildViewControllers
+{
+    
+    GFSMeViewController *me = [[GFSMeViewController alloc]init];
+    
+    GFSMeNavigationController *meNav = [[GFSMeNavigationController alloc]initWithRootViewController:me];
+//    self.mineVC = meNav;
+    [self addChildViewController:meNav];
+    
+    GFSLoginViewController *log = [[GFSLoginViewController alloc]init];
+    
+#warning 传入保存的账号和密码 不用再次输入
+    GFSMeNavigationController *logNav = [[GFSMeNavigationController alloc]initWithRootViewController:log];
+//    self.logVC = logNav;
+    [self addChildViewController:logNav];
+    
+   
+}
+- (void)stateChanged
+{
+    if ([GFSState sharedGFSState].state) {
+        
+        // 显示wo模块
+        GFSMeNavigationController *hideVC = self.childViewControllers[1];
+        
+        [hideVC.view removeFromSuperview];
+        
+        GFSMeNavigationController *showVC = self.childViewControllers[0];
+        
+        [self.view addSubview:showVC.view];
+        
+    }else{
+        GFSMeNavigationController *hideVC = self.childViewControllers[0];
+        
+        [hideVC.view removeFromSuperview];
+        
+        GFSMeNavigationController *showVC = self.childViewControllers[1];
+        
+        [self.view addSubview:showVC.view];
+    }
+}
+- (void)showWhichViewController
+{
+    GFSAccount *account = [GFSAccountTool getAccount];
+    
+    if (account) {
+        if (account.state) {
+            
+            // 显示wo模块
+            GFSMeNavigationController *hideVC = self.childViewControllers[1];
+            
+            [hideVC.view removeFromSuperview];
+            
+            GFSMeNavigationController *showVC = self.childViewControllers[0];
+            
+            [self.view addSubview:showVC.view];
+//            self.showViewController = self.mineVC;
+        }else{
+            
+            GFSMeNavigationController *hideVC = self.childViewControllers[0];
+            
+            [hideVC.view removeFromSuperview];
+            
+            GFSMeNavigationController *showVC = self.childViewControllers[1];
+            
+            [self.view addSubview:showVC.view];
+        }
+            
+    }else{
+        
+        GFSMeNavigationController *hideVC = self.childViewControllers[0];
+        
+        [hideVC.view removeFromSuperview];
+        
+        GFSMeNavigationController *showVC = self.childViewControllers[1];
+        
+        [self.view addSubview:showVC.view];
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

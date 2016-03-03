@@ -1,0 +1,40 @@
+//
+//  Famous-Prefix.pch
+//  MingShiMingJiangDemo
+//
+//  Created by 管复生 on 16/2/29.
+//  Copyright © 2016年 GFS. All rights reserved.
+//
+
+#ifndef Famous_Prefix_pch
+#define Famous_Prefix_pch
+
+#import "GFSAccountTool.h"
+#import "UIImage+GFS.h"
+#import "UIViewController+GFS.h"
+// 0 第三方autolayout
+#define MAS_SHORTHAND
+#define MAS_SHORTHAND_GLOBALS
+#import "Masonry.h"
+// 1 判断是否为iOS7以上
+#define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
+// 2 设置颜色
+#define GFSColor(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha: (a)/1.0]
+// 3 设置城市选择字体
+#define GFSCityFont [UIFont systemFontOfSize:15.0]
+// 4 全局单例地址按钮
+
+#import "GFSShowCityButton.h"
+
+#define GFSShowCityBtn [GFSShowCityButton sharedGFSShowCityButton]
+// 5 自定义Log
+#ifdef DEBUG
+#define GFSLog(...) NSLog(__VA_ARGS__)
+#else
+#define GFSLog(...) //NSLog(__VA_ARGS__)
+#endif
+
+// 6判断是否为6Plus以上尺寸
+#define iPhone6Plus [UIScreen mainScreen].bounds.size.width >= 414
+
+#endif /* Famous_Prefix_pch */

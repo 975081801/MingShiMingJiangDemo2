@@ -86,10 +86,6 @@
         
         [GFSAccountTool saveAccount:account];
         
-        GFSMeViewController *me = [[GFSMeViewController alloc]init];
-//        GFSMeNavigationController *meNav = [[GFSMeNavigationController alloc]initWithRootViewController:me];
-        
-        [self.navigationController pushViewController:me animated:YES];
         [GFSState sharedGFSState].state = YES;
         
     });

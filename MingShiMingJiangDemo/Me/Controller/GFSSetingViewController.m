@@ -105,9 +105,7 @@
     
     [GFSAccountTool saveAccount:account];
     
-    GFSLoginViewController *log = [[GFSLoginViewController alloc]init];
-    
-    [self.navigationController pushViewController:log animated:YES];
+    [GFSState sharedGFSState].state = NO;
 }
 /*
 #pragma mark - Navigation

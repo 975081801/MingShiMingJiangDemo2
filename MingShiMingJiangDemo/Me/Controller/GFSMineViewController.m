@@ -10,23 +10,16 @@
 #import "GFSMeNavigationController.h"
 #import "GFSMeViewController.h"
 #import "GFSLoginViewController.h"
-@interface GFSMineViewController ()
+@interface GFSMineViewController ()<GFSStateDelegate>
 /**
  *  记录登录状态
  */
-@property(nonatomic,assign)BOOL state;
+@property(nonatomic,strong)GFSState *state;;
 /**
  *  记录当前展示的控制器
  */
 @property(nonatomic,weak)UIViewController *showViewController;
-/**
- *  wo 模块
- */
-@property(nonatomic,weak)GFSMeViewController *mineVC;
-/**
- *  登录模块
- */
-@property(nonatomic,weak)GFSLoginViewController *logVC;
+
 @end
 
 @implementation GFSMineViewController
@@ -34,12 +27,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    self.state = [GFSState sharedGFSState];
+    self.state.delegate = self;
     // 添加子控制器
     [self addChildViewControllers];
     // 设置显示的控制器
     [self showWhichViewController];
     
-    GFSAddObsver(stateChanged, GFSStateChanged);
 }
 - (void)addChildViewControllers
 {
@@ -47,21 +41,20 @@
     GFSMeViewController *me = [[GFSMeViewController alloc]init];
     
     GFSMeNavigationController *meNav = [[GFSMeNavigationController alloc]initWithRootViewController:me];
-//    self.mineVC = meNav;
     [self addChildViewController:meNav];
     
     GFSLoginViewController *log = [[GFSLoginViewController alloc]init];
     
 #warning 传入保存的账号和密码 不用再次输入
     GFSMeNavigationController *logNav = [[GFSMeNavigationController alloc]initWithRootViewController:log];
-//    self.logVC = logNav;
     [self addChildViewController:logNav];
     
    
 }
-- (void)stateChanged
+
+- (void)stateChanged:(BOOL)state
 {
-    if ([GFSState sharedGFSState].state) {
+    if (state) {
         
         // 显示wo模块
         GFSMeNavigationController *hideVC = self.childViewControllers[1];

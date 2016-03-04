@@ -7,14 +7,11 @@
 //
 
 #import "GFSTabBarController.h"
-#import "GFSMeViewController.h"
 #import "GFSMessageViewController.h"
+#import "GFSMineViewController.h"
 #import "GFSHomeCollectionViewController.h"
 #import "GFSNavigationController.h"
-#import "GFSLoginViewController.h"
-#import "GFSMeNavigationController.h"
 
-#import "GFSMineViewController.h"
 @interface GFSTabBarController ()
 
 @end
@@ -44,37 +41,9 @@
     GFSMessageViewController *message = [[GFSMessageViewController alloc]init];
     [self setupChildViewController:message withTitle:@"消息" imageName:@"" selectedImageName:@""];
     // 3. 我
-//    [self setMe];
-    
     GFSMineViewController *mine = [[GFSMineViewController alloc]init];
-    [self addChildViewController:mine];
+    [self setupChildViewController:mine withTitle:@"我的" imageName:@"" selectedImageName:@""];
 }
-//- (void)setMe
-//{
-//       // 取出保存的账户
-//    GFSAccount *account = [GFSAccountTool getAccount];
-//    if (account) {
-//        // 有
-//        if (account.state) {
-//            // 是登录状态
-//#warning 应该在此时传入 保存的信息
-//            GFSMeViewController *me = [[GFSMeViewController alloc]init];
-//            GFSMeNavigationController *meNav = [[GFSMeNavigationController alloc]initWithRootViewController:me];
-//
-//             [self addChildViewController:meNav];
-//        }else{
-//            GFSLoginViewController *log = [[GFSLoginViewController alloc]init];
-//#warning 传入保存的账号和密码 不用再次输入
-//            GFSMeNavigationController *meNav = [[GFSMeNavigationController alloc]initWithRootViewController:log];
-//            [self addChildViewController:meNav];
-//        }
-//        
-//    }else{
-//        GFSLoginViewController *log = [[GFSLoginViewController alloc]init];
-//        GFSMeNavigationController *meNav = [[GFSMeNavigationController alloc]initWithRootViewController:log];
-//        [self addChildViewController:meNav];
-//    }
-//}
 
 /**
  *  初始化一个子控制器

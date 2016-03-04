@@ -20,15 +20,9 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     self.view.backgroundColor = [UIColor greenColor];
-    self.navigationItem.leftBarButtonItem = nil;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:self action:@selector(setting)];
+    
 }
 
-- (void)setting
-{
-    GFSSetingViewController *setVc = [[GFSSetingViewController alloc]init];
-    [self.navigationController pushViewController:setVc animated:YES];
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

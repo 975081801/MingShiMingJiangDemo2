@@ -45,8 +45,10 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        
+        // 多个这种界面 防止继承出问题
+        self = [self initWithNibName:@"GFSRemindViewController" bundle:nil];
         [self setup];
+        
     }
     return self;
 }

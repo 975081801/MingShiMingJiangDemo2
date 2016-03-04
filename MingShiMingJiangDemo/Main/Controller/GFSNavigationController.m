@@ -92,12 +92,6 @@
         viewController.hidesBottomBarWhenPushed = YES;
         
     }
-//    if ([viewController isKindOfClass:[GFSMeViewController class]]) {
-//        viewController.hidesBottomBarWhenPushed = NO;
-//    }
-//    if ([viewController isKindOfClass:[GFSLoginViewController class]]) {
-//        viewController.hidesBottomBarWhenPushed = NO;
-//    }
     [super pushViewController:viewController animated:animated];
 }
 

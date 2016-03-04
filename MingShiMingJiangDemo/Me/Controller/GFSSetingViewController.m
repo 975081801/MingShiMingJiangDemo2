@@ -17,21 +17,63 @@
 #import "GFSIntroduceViewController.h"
 #import "GFSAboutUsViewController.h"
 
-#import "GFSLoginViewController.h"
 @interface GFSSetingViewController ()
 @property(nonatomic,weak)UIView *footer;
 @end
 
 @implementation GFSSetingViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+//    self.hidesBottomBarWhenPushed = YES;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.title = @"设置";
     
     [self setGroup0];
     
     [self setGroup1];
+    
+    [self setupFooter];
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+#pragma mark- 私有方法
+/**
+ *  添加第0组数据
+ */
+- (void)setGroup0
+{
+    GFSBaseSettingItem *changePwd = [GFSArrowSettingItem itemWithTitle:@"重置密码" destVcClass:[GFSChangePwdViewController class]];
+    
+    GFSSettingGroup *group = [[GFSSettingGroup alloc]init];
+    group.items = @[changePwd];
+    [self.data addObject:group];
+}
+
+/**
+ *  第1组数据
+ */
+- (void)setGroup1
+{
+    GFSBaseSettingItem *advice = [GFSArrowSettingItem itemWithTitle:@"意见反馈" destVcClass:[GFSAdviceViewController class]];
+    GFSBaseSettingItem *introduce = [GFSArrowSettingItem itemWithTitle:@"功能介绍" destVcClass:[GFSAdviceViewController class]];
+    GFSBaseSettingItem *about = [GFSArrowSettingItem itemWithTitle:@"关于我们" destVcClass:[GFSAdviceViewController class]];
+    
+    GFSSettingGroup *group = [[GFSSettingGroup alloc]init];
+    group.items = @[ advice,introduce,about];
+    
+    [self.data addObject:group];
+}
+/**
+ *  设置底部按钮
+ */
+- (void)setupFooter
+{
     UIView *footer = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 200)];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -48,37 +90,24 @@
     [footer addSubview:btn];
     self.footer = footer;
     self.tableView.tableFooterView = footer;
+    
 }
 /**
- *  添加第0组数据
+ *  按钮响应  退出登录
  */
-- (void)setGroup0
+- (void)signout
 {
-    GFSBaseSettingItem *changePwd = [GFSArrowSettingItem itemWithTitle:@"重置密码" destVcClass:[GFSChangePwdViewController class]];
+    // 修改登录状态 退出登录
+    GFSAccount *account = [GFSAccountTool getAccount];
     
-    GFSSettingGroup *group = [[GFSSettingGroup alloc]init];
-    group.items = @[changePwd];
-    [self.data addObject:group];
+    account.state = NO;
+    
+    [GFSAccountTool saveAccount:account];
+    
+    [GFSState sharedGFSState].state = NO;
 }
-/**
- *  第二组数据
- */
-- (void)setGroup1
-{
-    GFSBaseSettingItem *advice = [GFSArrowSettingItem itemWithTitle:@"意见反馈" destVcClass:[GFSAdviceViewController class]];
-    GFSBaseSettingItem *introduce = [GFSArrowSettingItem itemWithTitle:@"功能介绍" destVcClass:[GFSAdviceViewController class]];
-    GFSBaseSettingItem *about = [GFSArrowSettingItem itemWithTitle:@"关于我们" destVcClass:[GFSAdviceViewController class]];
-    
-    GFSSettingGroup *group = [[GFSSettingGroup alloc]init];
-    group.items = @[ advice,introduce,about];
-    
-    [self.data addObject:group];
-}
+#pragma mark- tableView代理和数据源
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView *footer = [[UIView alloc]init];
@@ -91,30 +120,11 @@
     [footer addSubview:btn];
     return footer;
 }
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60;
 }
-- (void)signout
-{
-    // 修改登录状态 退出登录
-    GFSAccount *account = [GFSAccountTool getAccount];
-    
-    account.state = NO;
-    
-    [GFSAccountTool saveAccount:account];
-    
-    [GFSState sharedGFSState].state = NO;
-}
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

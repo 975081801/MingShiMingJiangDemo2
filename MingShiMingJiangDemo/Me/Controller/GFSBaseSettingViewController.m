@@ -54,7 +54,7 @@
     
     return cell ;
 }
-#pragma mark-代理方法
+#pragma mark- tableView代理方法
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //1.取消选中状态

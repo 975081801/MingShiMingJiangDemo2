@@ -7,18 +7,16 @@
 //
 
 #import "GFSMineViewController.h"
-#import "GFSMeNavigationController.h"
 #import "GFSMeViewController.h"
 #import "GFSLoginViewController.h"
+#import "GFSSetingViewController.h"
+#import "GFSRegisterViewController.h"
+
 @interface GFSMineViewController ()<GFSStateDelegate>
 /**
  *  记录登录状态
  */
-@property(nonatomic,strong)GFSState *state;;
-/**
- *  记录当前展示的控制器
- */
-@property(nonatomic,weak)UIViewController *showViewController;
+@property(nonatomic,strong)GFSState *state;
 
 @end
 
@@ -35,97 +33,113 @@
     [self showWhichViewController];
     
 }
-- (void)addChildViewControllers
-{
-    
-    GFSMeViewController *me = [[GFSMeViewController alloc]init];
-    
-    GFSMeNavigationController *meNav = [[GFSMeNavigationController alloc]initWithRootViewController:me];
-    [self addChildViewController:meNav];
-    
-    GFSLoginViewController *log = [[GFSLoginViewController alloc]init];
-    
-#warning 传入保存的账号和密码 不用再次输入
-    GFSMeNavigationController *logNav = [[GFSMeNavigationController alloc]initWithRootViewController:log];
-    [self addChildViewController:logNav];
-    
-   
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
-
+#pragma mark- 状态改变代理方法
 - (void)stateChanged:(BOOL)state
 {
     if (state) {
         
         // 显示wo模块
-        GFSMeNavigationController *hideVC = self.childViewControllers[1];
-        
-        [hideVC.view removeFromSuperview];
-        
-        GFSMeNavigationController *showVC = self.childViewControllers[0];
-        
-        [self.view addSubview:showVC.view];
+        [self showMyView];
         
     }else{
-        GFSMeNavigationController *hideVC = self.childViewControllers[0];
-        
-        [hideVC.view removeFromSuperview];
-        
-        GFSMeNavigationController *showVC = self.childViewControllers[1];
-        
-        [self.view addSubview:showVC.view];
+        // 显示登录界面
+        [self showLoginView];
     }
 }
+#pragma mark- 私有方法
+- (void)addChildViewControllers
+{
+    
+    GFSMeViewController *me = [[GFSMeViewController alloc]init];
+    
+    me.view.frame = self.view.bounds;
+    [self addChildViewController:me];
+    
+    GFSLoginViewController *log = [[GFSLoginViewController alloc]init];
+    
+    log.view.frame = self.view.bounds;
+#warning 传入保存的账号和密码 不用再次输入
+    
+    [self addChildViewController:log];
+    
+}
+
+/**
+ *  跳转到设置模块
+ */
+- (void)jumpToSettings
+{
+    GFSSetingViewController *setVc = [[GFSSetingViewController alloc]init];
+    [self.navigationController pushViewController:setVc animated:YES];
+}
+/**
+ *  跳转到注册模块
+ */
+- (void)jumpToRegisterVc
+{
+    GFSRegisterViewController *registerVc = [[GFSRegisterViewController alloc]init];
+    registerVc.title = @"注册";
+    [self.navigationController pushViewController:registerVc animated:YES];
+}
+/**
+ *  开始加载时根据登录状态 选择
+ */
 - (void)showWhichViewController
 {
     GFSAccount *account = [GFSAccountTool getAccount];
     
     if (account) {
         if (account.state) {
-            
             // 显示wo模块
-            GFSMeNavigationController *hideVC = self.childViewControllers[1];
+            [self showMyView];
             
-            [hideVC.view removeFromSuperview];
-            
-            GFSMeNavigationController *showVC = self.childViewControllers[0];
-            
-            [self.view addSubview:showVC.view];
-//            self.showViewController = self.mineVC;
         }else{
-            
-            GFSMeNavigationController *hideVC = self.childViewControllers[0];
-            
-            [hideVC.view removeFromSuperview];
-            
-            GFSMeNavigationController *showVC = self.childViewControllers[1];
-            
-            [self.view addSubview:showVC.view];
+            // 显示登录界面
+            [self showLoginView];
         }
             
     }else{
-        
-        GFSMeNavigationController *hideVC = self.childViewControllers[0];
-        
-        [hideVC.view removeFromSuperview];
-        
-        GFSMeNavigationController *showVC = self.childViewControllers[1];
-        
-        [self.view addSubview:showVC.view];
+        [self showLoginView];
     }
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+/**
+ *  显示wo模块
+ */
+- (void)showMyView
+{
+    // 显示wo模块
+    self.title = @"我的";
+    GFSLoginViewController *hideVC = self.childViewControllers[1];
+    
+    [hideVC.view removeFromSuperview];
+    
+    GFSMeViewController *showVC = self.childViewControllers[0];
+    
+    [self.view addSubview:showVC.view];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc ]initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:self action:@selector(jumpToSettings)];
+}
+/**
+ *  显示登录界面
+ */
+- (void)showLoginView
+{
+    // 显示登录界面
+    self.title = @"登录";
+    GFSMeViewController *hideVC = self.childViewControllers[0];
+    
+    [hideVC.view removeFromSuperview];
+    
+    GFSLoginViewController *showVC = self.childViewControllers[1];
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.view addSubview:showVC.view];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"注册" style:UIBarButtonItemStylePlain target:self action:@selector(jumpToRegisterVc)];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

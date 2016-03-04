@@ -10,8 +10,7 @@
 #import "GFSRegisterViewController.h"
 #import "GFSMeViewController.h"
 #import "GFSRemindViewController.h"
-#import "GFSMeNavigationController.h"
-
+#import "MBProgressHUD.h"
 @interface GFSLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumber;
 @property (weak, nonatomic) IBOutlet UITextField *scretCode;

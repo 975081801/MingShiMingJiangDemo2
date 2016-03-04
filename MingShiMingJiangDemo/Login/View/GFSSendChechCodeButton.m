@@ -22,6 +22,7 @@
 {
     if (self= [super initWithFrame:frame]) {
         
+        self.layer.cornerRadius = 5;
         // 设置默认的倒计时时长为60秒
         self.durationOfCountDown = 60;
         // 设置button的默认标题为“获取验证码”

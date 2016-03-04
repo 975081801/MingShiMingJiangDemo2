@@ -40,11 +40,14 @@
                                 <constraint firstAttribute="width" constant="100" id="XXU-rt-6b5"/>
                             </constraints>
                             <state key="normal" title="发送验证码"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="sendCheckMessage:" destination="-1" eventType="touchUpInside" id="egu-b7-fAQ"/>
                             </connections>
                         </button>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入手机号" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8IB-9O-SkQ">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8IB-9O-SkQ">
                             <rect key="frame" x="0.0" y="0.0" width="243" height="50"/>
                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -61,6 +64,9 @@
                         <constraint firstAttribute="bottom" secondItem="9cC-qH-IhN" secondAttribute="bottom" constant="3" id="gHW-Fz-Q7k"/>
                         <constraint firstItem="9cC-qH-IhN" firstAttribute="leading" secondItem="8IB-9O-SkQ" secondAttribute="trailing" constant="8" id="pxi-j6-sAK"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8"/>
+                    </userDefinedRuntimeAttributes>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="coz-wu-Hpa">
                     <rect key="frame" x="24" y="215" width="366" height="50"/>
@@ -105,6 +111,9 @@
                     <state key="normal" title="完成">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="doneRegister:" destination="-1" eventType="touchUpInside" id="vFd-dU-WWR"/>
                     </connections>

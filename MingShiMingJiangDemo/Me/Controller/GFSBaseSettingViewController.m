@@ -18,6 +18,17 @@
 
 @implementation GFSBaseSettingViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // 设置背景要先清空背景View 其优先级高于backgroundcolor，grouped样式采用会有backgroundView
+    self.tableView.backgroundView = nil;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.showsVerticalScrollIndicator = NO;
+    
+    self.tableView.separatorColor = [UIColor grayColor];
+    self.tableView.backgroundColor = GFSColor(217, 217, 217, 0.8);
+}
+
 #pragma mark- 初始化
 - (id)init
 {
@@ -80,13 +91,5 @@
     }
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // 设置背景要先清空背景View 其优先级高于backgroundcolor，grouped样式采用会有backgroundView
-    self.tableView.backgroundView = nil;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.tableView.separatorColor = [UIColor grayColor];
-    self.tableView.backgroundColor = GFSColor(217, 217, 217, 0.8);
-}
 
 @end

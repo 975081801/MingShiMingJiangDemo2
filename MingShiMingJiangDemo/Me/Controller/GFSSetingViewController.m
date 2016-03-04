@@ -32,6 +32,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"设置";
+    
     [self setGroup0];
     
     [self setGroup1];
@@ -74,13 +76,13 @@
  */
 - (void)setupFooter
 {
-    UIView *footer = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 200)];
+    UIView *footer = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 50)];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     
     btn.layer.cornerRadius = 8;
     
-    btn.frame = CGRectMake(20, 0, [UIScreen mainScreen].bounds.size.width- 40, 60);
+    btn.frame = CGRectMake(20, 0, [UIScreen mainScreen].bounds.size.width- 40, 40);
     btn.backgroundColor = [UIColor greenColor];
     [btn setTitle:@"退出登录" forState:UIControlStateNormal];
     btn.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -108,22 +110,9 @@
 }
 #pragma mark- tableView代理和数据源
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UIView *footer = [[UIView alloc]init];
-    
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    btn.layer.cornerRadius = 8;
-    
-    btn.frame = CGRectMake(20, 0, [UIScreen mainScreen].bounds.size.width- 40, 60);
-    [footer addSubview:btn];
-    return footer;
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 40;
 }
 
 

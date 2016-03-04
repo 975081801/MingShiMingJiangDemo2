@@ -25,9 +25,9 @@
 #pragma mark- lifeCycle
 - (void)awakeFromNib
 {
-    self.loginBtn.layer.cornerRadius = 5;
-    self.loginBtn.clipsToBounds = YES;
+    
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -52,6 +52,14 @@
     self.loginBtn.enabled = (self.phoneNumber.text.length && self.scretCode.text.length);
 }
 #pragma mark- event反馈
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (![self.phoneNumber isExclusiveTouch]) {
+        [self.phoneNumber resignFirstResponder];
+    }
+    if (![self.scretCode isExclusiveTouch]) {
+        [self.scretCode resignFirstResponder];
+    }
+}
 - (IBAction)loginBtn:(UIButton *)sender {
 //
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];

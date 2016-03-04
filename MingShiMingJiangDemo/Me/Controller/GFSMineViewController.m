@@ -11,7 +11,7 @@
 #import "GFSLoginViewController.h"
 #import "GFSSetingViewController.h"
 #import "GFSRegisterViewController.h"
-
+#import "GFSPreviewController.h"
 @interface GFSMineViewController ()<GFSStateDelegate>
 /**
  *  记录登录状态
@@ -42,8 +42,10 @@
 {
     if (state) {
         
-        // 显示wo模块
-        [self showMyView];
+        [UIView animateWithDuration:0.2 animations:^{
+            // 显示wo模块
+            [self showMyView];
+        } completion:nil];
         
     }else{
         // 显示登录界面
@@ -67,7 +69,16 @@
     [self addChildViewController:log];
     
 }
-
+/**
+ *  跳转预览界面
+ */
+- (void)junmpToPreview
+{
+#warning 出入数据
+    GFSPreviewController *preVc = [[GFSPreviewController alloc]init];
+    
+    [self.navigationController pushViewController:preVc animated:YES];
+}
 /**
  *  跳转到设置模块
  */
@@ -120,7 +131,7 @@
     GFSMeViewController *showVC = self.childViewControllers[0];
     
     [self.view addSubview:showVC.view];
-    
+    self.navigationItem.leftBarButtonItem =  [[UIBarButtonItem alloc]initWithTitle:@"预览" style:UIBarButtonItemStyleDone target:self action:@selector(junmpToPreview)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc ]initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:self action:@selector(jumpToSettings)];
 }
 /**
@@ -138,6 +149,7 @@
     
     [self.navigationController popToRootViewControllerAnimated:YES];
     [self.view addSubview:showVC.view];
+    self.navigationItem.leftBarButtonItem = nil;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"注册" style:UIBarButtonItemStylePlain target:self action:@selector(jumpToRegisterVc)];
 }
 

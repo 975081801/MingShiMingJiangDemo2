@@ -45,6 +45,9 @@
                     <state key="normal" title="登录">
                         <color key="titleColor" red="0.99527598657924743" green="1" blue="0.93471682280345059" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="loginBtn:" destination="-1" eventType="touchUpInside" id="hix-mJ-31G"/>
                     </connections>
@@ -69,7 +72,11 @@
                 <constraint firstAttribute="trailing" secondItem="ine-4a-Vwi" secondAttribute="trailing" constant="24" id="EU2-1s-3jD"/>
                 <constraint firstItem="q4d-wd-Oyt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="GqX-00-lSk"/>
                 <constraint firstAttribute="trailing" secondItem="a62-cP-Dva" secondAttribute="trailing" constant="24" id="YOg-1n-a4j"/>
-                <constraint firstItem="ine-4a-Vwi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="c2A-6w-MQ1"/>
+                <constraint firstItem="ine-4a-Vwi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="c2A-6w-MQ1">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8"/>
+                    </userDefinedRuntimeAttributes>
+                </constraint>
                 <constraint firstItem="6K0-PI-7yR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="gox-DD-Pd3"/>
                 <constraint firstAttribute="trailing" secondItem="q4d-wd-Oyt" secondAttribute="trailing" constant="24" id="h4r-AC-lTq"/>
                 <constraint firstAttribute="trailing" secondItem="6K0-PI-7yR" secondAttribute="trailing" constant="24" id="nq4-G5-j0a"/>
